@@ -1,0 +1,24 @@
+**Table: Features for AML/KYT Analysis in EVM-Based Blockchains**
+
+| **Feature Name**             | **Description**                                                 | **Type**          | **Relevance to AML/KYT**                                       |
+| ---------------------------- | --------------------------------------------------------------- | ----------------- | -------------------------------------------------------------- |
+| `tx_count`                   | Total number of transactions for the address                    | Numeric           | Very low or very high volume may indicate suspicious activity  |
+| `avg_tx_value`               | Average value of transactions in ETH or USD                     | Numeric           | Extremely low or high values may signal smurfing or laundering |
+| `std_tx_value`               | Standard deviation of transaction values                        | Numeric           | High variance can indicate obfuscation attempts                |
+| `unique_recipient_ratio`     | Ratio of unique recipient addresses among outbound transactions | Numeric (0–1)     | Suggests fund dispersion (layering phase)                      |
+| `unique_sender_ratio`        | Ratio of unique sender addresses among inbound transactions     | Numeric (0–1)     | Suggests fund consolidation (placement phase)                  |
+| `is_only_sender`             | Does the address only send (and never receive)?                 | Boolean           | “Outbound-only” wallets are often used in mixers or scams      |
+| `is_only_receiver`           | Does the address only receive (and never send)?                 | Boolean           | May indicate burner wallets, scams, or victims                 |
+| `contract_interaction_count` | Number of interactions with smart contracts                     | Numeric           | High interaction rate suggests use of DeFi/mixer protocols     |
+| `contract_ratio`             | % of transactions involving contracts                           | Numeric           | Distinguishes EOAs from automated or DeFi-related behavior     |
+| `interaction_with_flagged`   | Number of transactions with flagged (e.g., scam) addresses      | Numeric           | Strong indicator of risky behavior                             |
+| `high_gas_ratio`             | % of transactions with gasPrice above a given threshold         | Numeric           | High urgency often seen in obfuscation or evasive activity     |
+| `median_time_between_txs`    | Median time between transactions                                | Numeric (seconds) | Very short = bots/scripts; long gaps = sleeper wallets         |
+| `hops_to_dex`                | Number of hops to a known exchange address (DEX or CEX)         | Numeric           | Useful for tracking liquidity movements post-laundering        |
+| `token_diversity`            | Number of different tokens transacted                           | Numeric           | High diversity may indicate value obfuscation strategies       |
+| `cluster_size`               | Size of the associated address cluster (via heuristics)         | Numeric           | Large clusters may reflect orchestrated behavior               |
+| `taint_score`                | Proportion of funds received from known risky addresses         | Numeric (0–1)     | Used by forensic tools like Chainalysis or TRM Labs            |
+| `entropy_outputs`            | Entropy of outgoing transaction values (log-based)              | Numeric           | High entropy suggests value-splitting or noise injection       |
+
+@AIOpenAML
+
